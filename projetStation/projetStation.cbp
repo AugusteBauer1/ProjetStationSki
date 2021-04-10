@@ -34,8 +34,6 @@
 		</Compiler>
 		<Unit filename="Arcs.cpp" />
 		<Unit filename="Arcs.h" />
-		<Unit filename="Gotoligcol.cpp" />
-		<Unit filename="Gotoligcol.h" />
 		<Unit filename="Graphe.cpp" />
 		<Unit filename="Graphe.h" />
 		<Unit filename="Personne.cpp" />

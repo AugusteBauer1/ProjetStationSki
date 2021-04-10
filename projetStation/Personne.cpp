@@ -65,10 +65,14 @@ void Personne::enregistrerNouveauProfils()
     std::cin >> m_pseudo;
     std::cout << "mot de passe : " << std::endl;
     std::cin >> m_mdp;
+    //std::ifstream monFlux;
+    //monFlux.open("Profil.txt");
     std::ofstream monFlux;
-    monFlux.open("Profil.txt");
+    monFlux.open("Profil.txt",std::ios_base::app | std::ios_base::out);
+    if(monFlux)
+    {
         std::cout << "test";
-    monFlux <<  m_pseudo << m_mdp ;
+/*    monFlux <<  m_pseudo << m_mdp ;
         for(int i=0; i<NombreChemin; i++)
         {
             if(m_preference[i] == true)
@@ -76,7 +80,8 @@ void Personne::enregistrerNouveauProfils()
             else
                 monFlux << "0";
         }
-    monFlux << std::endl;
+    monFlux << std::endl;*/
+    }
     monFlux.close();
 }
 
