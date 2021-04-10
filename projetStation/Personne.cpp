@@ -24,14 +24,13 @@
 
 
 
-Personne::Personne(std::string m_pseudo,std::vector<bool> interface4)
+Personne::Personne(std::vector<bool> interface4)
 {
     int menuprofil;
     m_preference=interface4;
     std::cout << "                            -----Enregistrement ou choix du profil-----\n\n";
     std::cout << "Si vous voulez enregistrer un nouveau profil en fonction des parametres que vous venez d'entrer, tapper 1:" << std::endl;
     std::cout << "Si vous voulez charger votre profil deja enregistre, tapper 2:" << std::endl;
-    std::cout << "Pour continuer et connaitre le chemin le plus rapide en fonction de vos preferences, tapper 4:" << std::endl;
     std::cin>>menuprofil;
 
 
@@ -41,6 +40,7 @@ Personne::Personne(std::string m_pseudo,std::vector<bool> interface4)
         gotoligcol(0,33);
         system("cls");
         enregistrerNouveauProfils();
+        m_nouv=true;
         //system("cls");
         break;
 
@@ -49,16 +49,11 @@ Personne::Personne(std::string m_pseudo,std::vector<bool> interface4)
         system("cls");
         chargerProfils();
         system("cls");
+        m_nouv = false;
         break;
-
-    case 4 :
-        std::cout << "t'es le best" << std::endl;
-        break;
-        system("cls");
+    default :
+    break;
     }
-
-
-
 }
 
 
@@ -75,9 +70,7 @@ void Personne::enregistrerNouveauProfils()
 
     if(monFlux)
     {
-    monFlux << "Pseudo: " << m_pseudo << " ";
-    monFlux << "|| Mot de passe: " << m_mdp << " ";
-    monFlux << "|| Preference du profil: ";
+    monFlux <<  m_pseudo << m_mdp ;
         for(int i=0; i<NombreChemin; i++)
         {
             if(m_preference[i] == true)

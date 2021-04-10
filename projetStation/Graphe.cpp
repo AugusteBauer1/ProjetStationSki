@@ -23,7 +23,7 @@ mycoord.Y = lig;
 SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), mycoord );
 }
 
-Graphe::Graphe(std::string nom,std::vector<bool> choix)                           ///CONSTRUCTEUR DU GRAPHE AVEC OUVERTURE DU FICHIER
+Graphe::Graphe(std::string nom,std::vector<bool> choix)                                            ///CONSTRUCTEUR DU GRAPHE AVEC OUVERTURE DU FICHIER
 {
     int w,x,y,z,h,ctp;
     std::vector<std::string> type{"N","R","B","V","KL","SURF","TPH","TC","TSD","TS","TK","BUS"};
@@ -76,7 +76,7 @@ Graphe::Graphe(std::string nom,std::vector<bool> choix)                         
     }
 }
 
-Graphe::~Graphe()                                                                 ///DESTRUCTEUR DU GRAPHE
+Graphe::~Graphe()                                                                                  ///DESTRUCTEUR DU GRAPHE
 {
     for(auto elem : m_listeArcs)
     {
@@ -88,7 +88,7 @@ Graphe::~Graphe()                                                               
     }
 }
 
-void Graphe::afficherTrajet()                                                     ///AFFICHAGE DES BORNES DE L'ARC
+void Graphe::afficherTrajet()                                                                      ///AFFICHAGE DES BORNES DE L'ARC
 {
 
     int numero;
@@ -116,7 +116,7 @@ void Graphe::afficherTrajet()                                                   
 
 }
 
-void Graphe::afficherVoisins()                                                    ///AFFICHAGE DES ARCS ENTRANTS ET SORTANTS D'UN SOMMET
+void Graphe::afficherVoisins()                                                                     ///AFFICHAGE DES ARCS ENTRANTS ET SORTANTS D'UN SOMMET
 {
     int numero;
     std::cout<<"Choisir un point pour connaitre les trajets qui y partent et qui y arrivent"<<std::endl;
@@ -152,7 +152,7 @@ void Graphe::afficherVoisins()                                                  
         }
 }
 
-std::vector<std::pair<Sommet*,Arcs *>> Graphe::getSuccesseur(int i)               ///SUCCESSEUR DU SOMMET I
+std::vector<std::pair<Sommet*,Arcs *>> Graphe::getSuccesseur(int i)                                ///SUCCESSEUR DU SOMMET I
 {
     std::vector<std::pair<Sommet*,Arcs *>> successeurtacaptemonreuf;
     for(int j=0;j<m_ordre;j++)
@@ -168,12 +168,12 @@ std::vector<std::pair<Sommet*,Arcs *>> Graphe::getSuccesseur(int i)             
     return successeurtacaptemonreuf;
 }
 
-auto comparaison = [](std::pair<int,int> Pair1, std::pair<int,int> Pair2)         ///FONCTION DE COMPARAISON DES POIDS POUR LE PRIORITY QUEUE
+auto comparaison = [](std::pair<int,int> Pair1, std::pair<int,int> Pair2)                          ///FONCTION DE COMPARAISON DES POIDS POUR LE PRIORITY QUEUE
 {
     return Pair2.second < Pair1.second;   //Fonction de comparaison
 };
 
-std::vector<std::pair<int,float>> Graphe::dijkstra(int depart)                    ///ALGORITHME DE DIJKSTRA
+std::vector<std::pair<int,float>> Graphe::dijkstra(int depart)                                     ///ALGORITHME DE DIJKSTRA
 {
     std::vector<std::pair<int,float>> pred;
     std::pair<int,float> passageA;   //Declaration pair de passage
@@ -213,7 +213,7 @@ std::vector<std::pair<int,float>> Graphe::dijkstra(int depart)                  
     return pred;
 }
 
-void Graphe::afficherPredDijkstraAll(std::vector<std::pair<int,float>> pred)      ///AFFICHAGE DE TOUT LES PLUS COURT CHEMIN AVEC DIJKSTRA
+void Graphe::afficherPredDijkstraAll(std::vector<std::pair<int,float>> pred)                       ///AFFICHAGE DE TOUT LES PLUS COURT CHEMIN AVEC DIJKSTRA
 {
     float numpred,numpoids,poids;
     bool aff=false;
@@ -254,7 +254,7 @@ void Graphe::afficherPredDijkstraAll(std::vector<std::pair<int,float>> pred)    
     std::cout << std::endl;
 }
 
-void Graphe::afficherPredDijkstra(std::vector<std::pair<int,float>> pred,int fin) ///AFFICHAGE D'UN SEUL PLUS COURT CHEMIN AVEC DIJKSTRA
+void Graphe::afficherPredDijkstra(std::vector<std::pair<int,float>> pred,int fin)                  ///AFFICHAGE D'UN SEUL PLUS COURT CHEMIN AVEC DIJKSTRA
 {
     float numpred;
     int ctp2=0;   ///AFFICHAGE GRACE AUX VECTEUR DE PREDESSECEUR
@@ -298,7 +298,7 @@ void Graphe::afficherPredDijkstra(std::vector<std::pair<int,float>> pred,int fin
     std::cout << std::endl;
 }
 
-std::vector<int> Graphe::BFS(int depart)                                          ///ALGORITHME DU PLUS COURT CHEMIN, BFS
+std::vector<int> Graphe::BFS(int depart)                                                           ///ALGORITHME DU PLUS COURT CHEMIN, BFS
 {
     std::vector<int> pred;       //predecesseur
     int num;
@@ -335,7 +335,7 @@ std::vector<int> Graphe::BFS(int depart)                                        
     return pred;
 }
 
-void Graphe::afficherPredBFSAll(std::vector<int> pred)                            ///AFFICHAGE DE TOUT LES PLUS COURT CHEMIN AVEC BFS
+void Graphe::afficherPredBFSAll(std::vector<int> pred)                                             ///AFFICHAGE DE TOUT LES PLUS COURT CHEMIN AVEC BFS
 {
     int numpred;
     std::cout << std::endl << std::endl;
@@ -355,7 +355,7 @@ void Graphe::afficherPredBFSAll(std::vector<int> pred)                          
 
 }
 
-void Graphe::afficherPredBFS(std::vector<int> pred,int fin)                       ///AFFICHAGE D'UN SEUL PLUS COURT CHEMIN AVEC BFS
+void Graphe::afficherPredBFS(std::vector<int> pred,int fin)                                        ///AFFICHAGE D'UN SEUL PLUS COURT CHEMIN AVEC BFS
 {
     int numpred,ctp =0;
     std::cout << std::endl << std::endl;
@@ -376,7 +376,7 @@ void Graphe::afficherPredBFS(std::vector<int> pred,int fin)                     
     std::cout << std::endl;
 }
 
-void Graphe::reseau()                                                             ///TRANSFORMER LE GRAPHE EN UN RESEAU
+void Graphe::reseau()                                                                              ///TRANSFORMER LE GRAPHE EN UN RESEAU
 {
     int ctp1=0,ctp2=0;
     int depart, fin;
@@ -489,7 +489,7 @@ void Graphe::reseau()                                                           
     m_listeSommet[fin]->resetAdjacence();
 }
 
-std::vector<std::pair<Sommet *,std::pair<int,int>>> Graphe::FordFulkersonMarque() ///ALGORITHME DE  MARQUAGE DE FORD ET FULKERSON
+std::vector<std::pair<Sommet *,std::pair<int,int>>> Graphe::FordFulkersonMarque()                  ///ALGORITHME DE  MARQUAGE DE FORD ET FULKERSON
 {
     Sommet delta(38,"delta",10);
     std::vector<std::pair<Sommet *,std::pair<int,int>>> marquage;
@@ -546,17 +546,28 @@ std::vector<std::pair<Sommet *,std::pair<int,int>>> Graphe::FordFulkersonMarque(
     return marquage;
 }
 
-void Graphe::FordFulkerson()
+void Graphe::FordFulkerson()                                                                       ///ALGORITHME DE FORD ET FULKERSON
 {
     int flot =0;
     std::vector<std::pair<Sommet *,std::pair<int,int>>> marquage;
+    std::vector<Arcs *> chaineAugmentante;
     do
     {
         marquage=FordFulkersonMarque();
         if(marquage[m_SourcePuit.second->getnbr()].first!=nullptr)
         {
-
+            chaineAugmentante=chainePredFF(marquage);
         }
 
     }while(marquage[m_SourcePuit.second->getnbr()].first != nullptr);
+}
+
+std::vector<Arcs *> Graphe::chainePredFF(std::vector<std::pair<Sommet *,std::pair<int,int>>> pred) ///ALGORITHME DE CALCUL D'UNE CHAINE AUGMENTANTE
+{
+    std::vector<Arcs *> chaine;
+    for(int i=0;i<m_taille;i++)
+    {
+
+    }
+    return chaine;
 }

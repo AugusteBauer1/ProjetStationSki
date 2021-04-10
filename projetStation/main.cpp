@@ -2,7 +2,6 @@
 #include "Sommet.h"
 #include "Arcs.h"
 #include "Personne.h"
-#include "Gotoligcol.h"
 
 #include <iostream>
 #include <vector>
@@ -41,7 +40,7 @@ void heureEtDate()  ///HEURE ET DATE
     gotoligcol(1,96);
     std::cout<<"DATE ET HEURE ACTUELLE ";
     gotoligcol(2,100);
-    printf("%d/%d ; %d:%d\n", instant.tm_mday, instant.tm_mon+1, instant.tm_hour, instant.tm_min);
+    printf("%d/%d | %d:%d\n", instant.tm_mday, instant.tm_mon+1, instant.tm_hour, instant.tm_min);
     gotoligcol(0,0);
 
 
@@ -80,7 +79,7 @@ void interface0()
     std::cout<<std::endl;
     std::cout<<"    4.    Connaitre le chemin le plus rapide en fonction de mes preferences"<<std::endl;
     std::cout<<std::endl;
-    std::cout<<"    5.    Connaitre le chemin de remonte ideal : "<<std::endl;
+    std::cout<<"    5.    Connaitre le chemin de remonte ideal "<<std::endl;
     std::cout<<std::endl;
     std::cout<<std::endl;
     std::cout<<"   Saisir votre choix"<<std::endl;
@@ -103,15 +102,12 @@ void interface0()
             system("CLS");
             for(int i=0;i<NombreChemin;i++)
                 choix.push_back(false);
-            DF=interface34();
             break;
 
         case 4:
             system("CLS");
-
             choix=interface4();///appeler charger ou enregistrer
             system("CLS");
-            DF=interface34();
 
             break;
         case 5:
@@ -119,19 +115,19 @@ void interface0()
             for(int i=0;i<NombreChemin;i++)
                 choix.push_back(false);
             break;
-
+        case 6:
+            system("CLS");
         default:
 
             interface0();
             break;
     }
     Graphe Station("Graphe.txt",choix);
-
-        if(menu==4)
-        {
-        Personne nouveau("test",choix);
-        }
-
+    if(menu==4 || menu==3)
+    {
+    Personne nouveau(choix);
+    DF=interface34();
+    }
     switch(menu)
     {
         case 1:

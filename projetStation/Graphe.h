@@ -41,6 +41,7 @@ class Graphe
         void reseau();
         std::vector<std::pair<Sommet *,std::pair<int,int>>> FordFulkersonMarque();
         void FordFulkerson();
+        std::vector<Arcs *> chainePredFF(std::vector<std::pair<Sommet *,std::pair<int,int>>> pred);
 };
 
 void gotoligcol( int lig, int col );
