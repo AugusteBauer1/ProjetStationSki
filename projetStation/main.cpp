@@ -1,6 +1,8 @@
 #include "Graphe.h"
 #include "Sommet.h"
 #include "Arcs.h"
+#include "Personne.h"
+#include "Gotoligcol.h"
 
 #include <iostream>
 #include <vector>
@@ -106,8 +108,11 @@ void interface0()
 
         case 4:
             system("CLS");
-            choix=interface4();
+
+            choix=interface4();///appeler charger ou enregistrer
+            system("CLS");
             DF=interface34();
+
             break;
         case 5:
             system("CLS");
@@ -116,11 +121,17 @@ void interface0()
             break;
 
         default:
-            system("CLS");
+
             interface0();
             break;
     }
     Graphe Station("Graphe.txt",choix);
+
+        if(menu==4)
+        {
+        Personne nouveau("test",choix);
+        }
+
     switch(menu)
     {
         case 1:
@@ -223,6 +234,7 @@ std::vector<bool> interface4()
                 }
             }
         }
+
  return choix;
 }
 
@@ -239,6 +251,7 @@ std::pair<int,int> interface34()
     DebutFin.second--;
     system("CLS");
     return DebutFin;
+
 }
 
 void interfaceBfsDijkstra(std::pair<int,int> DebutFin,Graphe Station)
