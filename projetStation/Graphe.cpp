@@ -261,7 +261,9 @@ void Graphe::afficherPredDijkstra(std::vector<std::pair<int,float>> pred,int fin
     float poids=m_listeSommet[fin]->getpoids(pred[fin].first);
     std::cout << std::endl << std::endl;
     std::cout << std::endl << std::endl;
-    std::cout << fin +1;
+    //std::cout << fin +1;
+    std::cout<<std::endl;
+    std::cout << "   Pour emprunter le plus court chemin entre ces deux sommets :";
     numpred=pred[fin].first;
     while(numpred!=-1)   //affichage du chemin  //pour les deux boucles d'affichages on utilise le vecteur de pred
     {
@@ -271,8 +273,17 @@ void Graphe::afficherPredDijkstra(std::vector<std::pair<int,float>> pred,int fin
     numpred=pred[fin].first;
     while(numpred!=-1)   //affichage du chemin  //pour les deux boucles d'affichages on utilise le vecteur de pred
     {
-        std::cout << " <-- "<< numpred+1;
-        numpred=pred[numpred].first;
+        for(int i=0;i<ctp2;i++)
+        {
+            gotoligcol(16-i,1);
+            std::cout << " Il faut prendre le trajet "<< numpred+1;
+            numpred=pred[numpred].first;
+
+        //std::cout << " <-- "<< numpred+1;
+       // numpred=pred[numpred].first;
+        }
+        gotoligcol(17,1);
+        std::cout<<" Et puis enfin le trajet "<<fin+1<<std::endl;
 
     }
     std::cout << std::endl;
@@ -360,7 +371,9 @@ void Graphe::afficherPredBFS(std::vector<int> pred,int fin)                     
     int numpred,ctp =0;
     std::cout << std::endl << std::endl;
     std::cout << std::endl << std::endl;
-    std::cout << fin +1;
+   // std::cout << fin +1<<std::endl;
+    std::cout<<std::endl;
+    std::cout << "   Pour emprunter le plus court chemin entre ces deux sommets :";
     numpred=pred[fin];
     while(numpred!=-1)   //refaire le chemin fait dans la fonction de recherche BFS
     {
@@ -370,10 +383,20 @@ void Graphe::afficherPredBFS(std::vector<int> pred,int fin)                     
     numpred=pred[fin];
     while(numpred!=-1)   //refaire le chemin fait dans la fonction de recherche BFS
     {
-        std::cout << " <-- "<< numpred+1;
-        numpred=pred[numpred];
-    }
+
+        for(int i=0;i<ctp;i++)
+            {
+                gotoligcol(16-i,1);
+                std::cout << " Il faut prendre le trajet "<< numpred+1;
+                numpred=pred[numpred];
+            }
+        gotoligcol(17,1);
+        std::cout<<" Et puis enfin le trajet "<<fin+1;
+
+
     std::cout << std::endl;
+    }
+
 }
 
 void Graphe::reseau()                                                             ///TRANSFORMER LE GRAPHE EN UN RESEAU

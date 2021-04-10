@@ -84,7 +84,7 @@
 1617786027 c:\users\augus\onedrive\documents\github\projetstationski\projetstation\console.h
 	<iostream>
 
-1617882517 source:c:\users\guill_000\documents\github\projetstationski\projetstation\arcs.cpp
+1618073516 source:c:\users\guill_000\documents\github\projetstationski\projetstation\arcs.cpp
 	"Arcs.h"
 	<iostream>
 	<vector>
@@ -95,7 +95,7 @@
 	<limits>
 	<cmath>
 
-1617882517 c:\users\guill_000\documents\github\projetstationski\projetstation\arcs.h
+1618073516 c:\users\guill_000\documents\github\projetstationski\projetstation\arcs.h
 	<iostream>
 	<vector>
 	<string>
@@ -104,7 +104,7 @@
 	<utility>
 	<limits>
 
-1617888399 source:c:\users\guill_000\documents\github\projetstationski\projetstation\graphe.cpp
+1618075929 source:c:\users\guill_000\documents\github\projetstationski\projetstation\graphe.cpp
 	"Graphe.h"
 	<iostream>
 	<vector>
@@ -114,8 +114,9 @@
 	<utility>
 	<limits>
 	<windows.h>
+	<cmath>
 
-1617882517 c:\users\guill_000\documents\github\projetstationski\projetstation\graphe.h
+1618073516 c:\users\guill_000\documents\github\projetstationski\projetstation\graphe.h
 	"Sommet.h"
 	"Arcs.h"
 	<iostream>
@@ -126,7 +127,7 @@
 	<utility>
 	<limits>
 
-1617882517 c:\users\guill_000\documents\github\projetstationski\projetstation\sommet.h
+1618073516 c:\users\guill_000\documents\github\projetstationski\projetstation\sommet.h
 	"Arcs.h"
 	<iostream>
 	<vector>
@@ -136,7 +137,7 @@
 	<utility>
 	<limits>
 
-1617886756 source:c:\users\guill_000\documents\github\projetstationski\projetstation\main.cpp
+1618073516 source:c:\users\guill_000\documents\github\projetstationski\projetstation\main.cpp
 	"Graphe.h"
 	"Sommet.h"
 	"Arcs.h"
@@ -150,7 +151,7 @@
 	<windows.h>
 	<ctime>
 
-1617882517 source:c:\users\guill_000\documents\github\projetstationski\projetstation\sommet.cpp
+1618073516 source:c:\users\guill_000\documents\github\projetstationski\projetstation\sommet.cpp
 	"Sommet.h"
 	<iostream>
 	<vector>
