@@ -74,6 +74,7 @@ Graphe::Graphe(std::string nom,std::vector<bool> choix)                         
                 m_listeSommet[x]->setAdjacence(m_listeSommet[y],m_listeArcs[i]);
         }
     }
+    fichier.close();
 }
 
 Graphe::~Graphe()                                                                                  ///DESTRUCTEUR DU GRAPHE

@@ -237,7 +237,7 @@ std::vector<bool> interface4()
 std::pair<int,int> interface34()
 {
     std::pair<int,int> DebutFin;
-    system("CLS");
+    //system("CLS");
     std::cout << "Veuillez renseignez le numero de votre sommet actuel :" << std::endl;
     std::cin >> DebutFin.first;
     system("CLS");
