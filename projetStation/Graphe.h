@@ -39,9 +39,9 @@ class Graphe
         void afficherPredBFS(std::vector<int> pred,int fin);
 
         void reseau();
-        std::vector<std::pair<Sommet *,std::pair<int,int>>> FordFulkersonMarque();
+        std::vector<std::pair<std::pair<Sommet *,Arcs *>,std::pair<int,int>>> FordFulkersonMarque();
         void FordFulkerson();
-        std::vector<Arcs *> chainePredFF(std::vector<std::pair<Sommet *,std::pair<int,int>>> pred);
+        std::vector<std::pair<Arcs *,int>> chainePredFF(std::vector<std::pair<std::pair<Sommet *,Arcs *>,std::pair<int,int>>> pred);
 };
 
 void gotoligcol( int lig, int col );

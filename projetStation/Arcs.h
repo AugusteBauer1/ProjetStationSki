@@ -26,12 +26,14 @@ class Arcs
         ~Arcs();
 
         float getDuree();
+        int getNbr();
 
         int getDepart();
         int getArrivee();
 
         int getCapacite();
         int getFlot();
+        void setFlot(int flot);
 
         std::string getNomTrajet();
         std::string getType();

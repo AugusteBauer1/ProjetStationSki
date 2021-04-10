@@ -490,85 +490,114 @@ void Graphe::reseau()                                                           
     m_listeSommet[fin]->resetAdjacence();
 }
 
-std::vector<std::pair<Sommet *,std::pair<int,int>>> Graphe::FordFulkersonMarque()                  ///ALGORITHME DE  MARQUAGE DE FORD ET FULKERSON
+std::vector<std::pair<std::pair<Sommet *,Arcs *>,std::pair<int,int>>> Graphe::FordFulkersonMarque()///ALGORITHME DE  MARQUAGE DE FORD ET FULKERSON
 {
     Sommet delta(38,"delta",10);
-    std::vector<std::pair<Sommet *,std::pair<int,int>>> marquage;
+    Arcs omega(96,"omega","N",0,0,0,0,0);
+    std::vector<std::pair<std::pair<Sommet *,Arcs *>,std::pair<int,int>>> marquage;
     std::vector<bool> examen;
     bool finExamen = false;
     int alpha,beta;
     for(int i=0;i<m_ordre;i++)
     {
         examen.push_back(false);
-        marquage.push_back(std::make_pair(nullptr,std::make_pair(0,0)));
+        marquage.push_back(std::make_pair(std::make_pair(nullptr,nullptr),std::make_pair(0,0)));
     }
-    marquage[m_SourcePuit.first->getnbr()] = std::make_pair(&delta,std::make_pair(0,infini));
-    while(marquage[m_SourcePuit.second->getnbr()].first==nullptr && (!finExamen))
+    marquage[m_SourcePuit.first->getnbr()] = std::make_pair(std::make_pair(&delta,&omega),std::make_pair(0,infini));
+    while(marquage[m_SourcePuit.second->getnbr()].first.first==nullptr && (!finExamen))
     {
         finExamen = true;
         for(int i=0;i<m_ordre;i++)
         {
-            if(!(marquage[i].first!=nullptr && (!examen[i])))
+            if(!(marquage[i].first.first!=nullptr && (!examen[i])))
             {
                 finExamen = false;
             }
         }
         for(int i=0;i<m_ordre;i++)
         {
-            if(marquage[i].first != nullptr && (!examen[i]))
+            if(marquage[i].first.first != nullptr && (!examen[i]))
             {
                 alpha = abs(marquage[i].second.second);
                 for(auto elem : m_listeSommet[i]->getVectAdjda())
                 {
-                    if(marquage[elem.first->getnbr()].first==nullptr)
+                    if(marquage[elem.first->getnbr()].first.first==nullptr)
                     {
                         if(elem.second->getCapacite() > elem.second->getFlot())
                         {
                             beta = std::min(alpha,elem.second->getCapacite() - elem.second->getFlot());
-                            marquage[elem.first->getnbr()]=std::make_pair(m_listeSommet[i],std::make_pair(1,beta));
+                            marquage[elem.first->getnbr()]=std::make_pair(std::make_pair(m_listeSommet[i],elem.second),std::make_pair(1,beta));
                         }
                     }
                 }
                 for(auto elem : getSuccesseur(i))
                 {
-                    if(marquage[elem.second->getDepart()].first==nullptr)
+                    if(marquage[elem.second->getDepart()].first.first==nullptr)
                     {
                         if(elem.second->getFlot()>0)
                         {
                             beta = std::min(alpha,elem.second->getFlot());
-                            marquage[elem.second->getDepart()] = std::make_pair(m_listeSommet[elem.second->getArrivee()],std::make_pair(-1,beta));
+                            marquage[elem.second->getDepart()] = std::make_pair(std::make_pair(m_listeSommet[elem.second->getArrivee()],elem.second),std::make_pair(-1,beta));
                         }
                     }
                 }
                 examen[i]=true;
             }
         }
+
     }
     return marquage;
 }
 
 void Graphe::FordFulkerson()                                                                       ///ALGORITHME DE FORD ET FULKERSON
 {
-    int flot =0;
-    std::vector<std::pair<Sommet *,std::pair<int,int>>> marquage;
-    std::vector<Arcs *> chaineAugmentante;
+    int alpha;
+    std::vector<std::pair<std::pair<Sommet *,Arcs *>,std::pair<int,int>>> marquage;
+    std::vector<std::pair<Arcs *,int>> chaineAugmentante;
     do
     {
+        std::cout << "test";
         marquage=FordFulkersonMarque();
-        if(marquage[m_SourcePuit.second->getnbr()].first!=nullptr)
+        if(marquage[m_SourcePuit.second->getnbr()].first.first!=nullptr)
         {
             chaineAugmentante=chainePredFF(marquage);
+            alpha = marquage[m_SourcePuit.second->getnbr()].second.second;
+            for(int i=0;i<chaineAugmentante.size();i++)
+            {
+                if(chaineAugmentante[i].second==1)
+                {
+                    m_listeArcs[chaineAugmentante[i].first->getNbr()]->setFlot(m_listeArcs[chaineAugmentante[i].first->getNbr()]->getFlot() + alpha);
+                }
+                if(chaineAugmentante[i].second==-1)
+                {
+                    m_listeArcs[chaineAugmentante[i].first->getNbr()]->setFlot(m_listeArcs[chaineAugmentante[i].first->getNbr()]->getFlot() - alpha);
+                }
+            }
         }
-
-    }while(marquage[m_SourcePuit.second->getnbr()].first != nullptr);
+    }
+    while(marquage[m_SourcePuit.second->getnbr()].first.first!= nullptr);
+    std::cout << "test";
 }
 
-std::vector<Arcs *> Graphe::chainePredFF(std::vector<std::pair<Sommet *,std::pair<int,int>>> pred) ///ALGORITHME DE CALCUL D'UNE CHAINE AUGMENTANTE
-{
-    std::vector<Arcs *> chaine;
-    for(int i=0;i<m_taille;i++)
-    {
 
+std::vector<std::pair<Arcs *,int>> Graphe::chainePredFF(std::vector<std::pair<std::pair<Sommet *,Arcs *>,std::pair<int,int>>> marquage) ///ALGORITHME DE CALCUL D'UNE CHAINE AUGMENTANTE
+{
+    std::vector<std::pair<Arcs *,int>> chaine;
+    int numpred;
+    numpred=marquage[m_SourcePuit.second->getnbr()].first.first->getnbr();
+    while(numpred!=-1)
+    {
+        if(marquage[numpred].first.first==nullptr)
+        {
+            numpred=-1;
+        }
+        else
+        {
+            chaine.push_back(std::make_pair(marquage[numpred].first.second,marquage[numpred].second.first));
+            numpred=marquage[numpred].first.first->getnbr();
+        }
     }
     return chaine;
 }
+
+

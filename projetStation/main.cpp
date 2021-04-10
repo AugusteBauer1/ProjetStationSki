@@ -154,6 +154,7 @@ void interface0()
             break;
         case 5:
             Station.reseau();
+            Station.FordFulkerson();
             interface0();
         default:
             system("CLS");

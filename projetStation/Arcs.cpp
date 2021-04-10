@@ -133,3 +133,12 @@ int Arcs::getFlot()
 {
     return m_flot;
 }
+void Arcs::setFlot(int flot)
+{
+    m_flot=flot;
+}
+
+int Arcs::getNbr()
+{
+    return m_numTrajet;
+}
