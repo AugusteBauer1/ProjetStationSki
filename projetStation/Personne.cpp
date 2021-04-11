@@ -4,11 +4,10 @@
 #include "Sommet.h"
 #include "Gotoligcol.h"
 
-
+#include <fstream>
 #include <iostream>
 #include <vector>
 #include <string>
-#include <fstream>
 #include <queue>
 #include <utility>
 #include <limits>
@@ -68,8 +67,8 @@ void Personne::enregistrerNouveauProfils()
     //std::ifstream monFlux;
     //monFlux.open("Profil.txt");
     std::ofstream monFlux;
-    monFlux.open("Profil.txt",std::ios_base::app | std::ios_base::out);
-    if(monFlux)
+    monFlux.open("Profil.txt");
+    if(monFlux.is_open())
     {
         std::cout << "test";
 /*    monFlux <<  m_pseudo << m_mdp ;

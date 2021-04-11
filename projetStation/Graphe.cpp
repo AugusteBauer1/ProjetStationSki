@@ -415,11 +415,11 @@ void Graphe::reseau()                                                           
                 }
             }
         }
-    if(depart==0)
+    if(choix[0])
         depart=29;
-    if(depart==1)
+    if(choix[1])
         depart=35;
-    if(depart==2)
+    if(choix[2])
         depart=6;
     system("CLS");
     for(int i=0;i<3;i++)
@@ -464,11 +464,11 @@ void Graphe::reseau()                                                           
                 }
             }
         }
-    if(fin==0)
+    if(choix2[0])
         fin=4;
-    if(fin==1)
+    if(choix2[1])
         fin=14;
-    if(fin==2)
+    if(choix2[2])
         fin=25;
     system("CLS");
     for(int i=0;i<3;i++)
@@ -506,6 +506,7 @@ std::vector<std::pair<std::pair<Sommet *,Arcs *>,std::pair<int,int>>> Graphe::Fo
     marquage[m_SourcePuit.first->getnbr()] = std::make_pair(std::make_pair(&delta,&omega),std::make_pair(0,infini));
     while(marquage[m_SourcePuit.second->getnbr()].first.first==nullptr && (!finExamen))
     {
+        std::cout << "coco";
         finExamen = true;
         for(int i=0;i<m_ordre;i++)
         {
@@ -544,7 +545,6 @@ std::vector<std::pair<std::pair<Sommet *,Arcs *>,std::pair<int,int>>> Graphe::Fo
                 examen[i]=true;
             }
         }
-
     }
     return marquage;
 }
